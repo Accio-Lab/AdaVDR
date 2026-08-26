@@ -9,7 +9,7 @@
     <a href="https://scholar.google.com/citations?user=PbA_HO0AAAAJ&amp;hl=zh-CN">Zicheng Liu</a><sup>1</sup>,
     <a href="https://github.com/Accio-Lab/AdaVDR">Zijian Zou</a><sup>1</sup>,
     <a href="https://accio-lab.github.io/AdaVDR/">Guannan Zhang</a><sup>1</sup><br>
-    <a href="https://scholar.google.com/citations?user=MUF2MeAAAAAJ&amp;hl=en">Yuwei Wu</a><sup>2,†</sup>,
+    <a href="https://scholar.google.com/citations?user=MUF2MeAAAAAJ&amp;hl=en">Yuwei Wu</a><sup>2</sup>,
     <a href="https://zhigao2017.github.io/">Zhi Gao</a><sup>2,†</sup>,
     <a href="https://hellwayxue.github.io/">Hongwei Xue</a><sup>1,†</sup>
   </p>
