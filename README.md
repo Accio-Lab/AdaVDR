@@ -1,13 +1,40 @@
 <div align="center">
   <h1>AdaVDR: Adaptive Tool Use and Reflection for Video Deep Research</h1>
 
+  <p>
+    <a href="https://github.com/xtong-zhang">Xintong Zhang</a><sup>1,2,*</sup>,
+    <a href="https://scholar.google.com/citations?user=3hzR8qQAAAAJ&amp;hl=zh-CN">Xiaomeng Fan</a><sup>1,2,*</sup>,
+    <a href="https://scholar.google.com/citations?user=2VhjOykAAAAJ&amp;hl=zh-CN">Shilin Yan</a><sup>1</sup>,
+    <a href="https://accio-lab.github.io/AdaVDR/">Ekko He</a><sup>1</sup>,
+    <a href="https://scholar.google.com/citations?user=PbA_HO0AAAAJ&amp;hl=zh-CN">Zicheng Liu</a><sup>1</sup>,
+    <a href="https://accio-lab.github.io/AdaVDR/">Guannan Zhang</a><sup>1</sup><br>
+    <a href="https://cs.bit.edu.cn/szdw/jsml/bssds/cf032ae4027040938653c343ba88d2a7.htm">Yunde Jia</a><sup>3</sup>,
+    <a href="https://scholar.google.com/citations?user=MUF2MeAAAAAJ&amp;hl=en">Yuwei Wu</a><sup>2,†</sup>,
+    <a href="https://zhigao2017.github.io/">Zhi Gao</a><sup>2,†</sup>,
+    <a href="https://hellwayxue.github.io/">Hongwei Xue</a><sup>1,†</sup>
+  </p>
+
+  <p>
+    <sup>1</sup>Accio Team, Alibaba Group<br>
+    <sup>2</sup>Beijing Key Laboratory of Intelligent Information Technology, School of Computer Science &amp; Technology, Beijing Institute of Technology<br>
+    <sup>3</sup>Guangdong Laboratory of Machine Perception and Intelligent Computing, Shenzhen MSU-BIT University
+  </p>
+
+  <p><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>†</sup>Corresponding author</p>
+
   <br>
 
   <a href="https://accio-lab.github.io/AdaVDR/">
     <img src="https://img.shields.io/badge/Project-Page-black?logo=googlechrome" alt="Project Page">
   </a>
   <a href="https://arxiv.org/abs/2604.08545">
-    <img src="https://img.shields.io/badge/arXiv-2604.08545-b31b1b.svg" alt="Paper">
+    <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="Paper">
+  </a>
+  <a href="https://github.com/Accio-Lab/AdaVDR">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97-Data-yellow" alt="Hugging Face Data">
+  </a>
+  <a href="https://github.com/Accio-Lab/AdaVDR">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97-Model-yellow" alt="Hugging Face Model">
   </a>
 </div>
 
@@ -116,7 +143,13 @@ The entity-centric example shows AdaVDR skipping redundant temporal grounding wh
 
 # Citation
 
-If you find AdaVDR useful in your research, please consider citing our paper. The complete author list will be added when the public citation metadata is finalized.
+If you find AdaVDR useful in your research, please consider citing our paper.
 
 ```bibtex
+@article{zhang2026adavdr,
+  title   = {AdaVDR: Adaptive Tool Use and Reflection for Video Deep Research},
+  author  = {Zhang, Xintong and Fan, Xiaomeng and Yan, Shilin and He, Xingqi and Liu, Zicheng and Zhang, Guannan and Jia, Yunde and Wu, Yuwei and Gao, Zhi and Xue, Hongwei},
+  journal = {arXiv preprint arXiv:2604.08545},
+  year    = {2026}
+}
 ```
