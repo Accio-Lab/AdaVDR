@@ -26,7 +26,7 @@
   <a href="https://accio-lab.github.io/AdaVDR/">
     <img src="https://img.shields.io/badge/Project-Page-black?logo=googlechrome" alt="Project Page">
   </a>
-  <a href="https://arxiv.org/abs/2604.08545">
+  <a href="https://arxiv.org/pdf/2608.25559">
     <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="Paper">
   </a>
   <a href="https://github.com/Accio-Lab/AdaVDR">
