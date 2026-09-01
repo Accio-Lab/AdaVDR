@@ -147,8 +147,8 @@ If you find AdaVDR useful in your research, please consider citing our paper.
 ```bibtex
 @article{zhang2026adavdr,
   title   = {AdaVDR: Adaptive Tool Use and Reflection for Video Deep Research},
-  author  = {Zhang, Xintong and Fan, Xiaomeng and Yan, Shilin and He, Xingqi and Liu, Zicheng and Zou, Zijian and Zhang, Guannan and Wu, Yuwei and Gao, Zhi and Xue, Hongwei},
-  journal = {arXiv preprint arXiv:2604.08545},
+  author  = {Zhang, Xintong and Fan, Xiaomeng and Yan, Shilin and He, Ekko and Liu, Zicheng and Zou, Zijian and Zhang, Guannan and Wu, Yuwei and Gao, Zhi and Xue, Hongwei},
+  journal = {arXiv preprint arXiv:2608.25559},
   year    = {2026}
 }
 ```
