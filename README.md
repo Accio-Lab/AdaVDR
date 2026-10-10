@@ -26,6 +26,7 @@
   <a href="https://accio-lab.github.io/AdaVDR/">
     <img src="https://img.shields.io/badge/Project-Page-black?logo=googlechrome" alt="Project Page">
   </a>
+  <a href="paper/AdaVDR.pdf"><img src="https://img.shields.io/badge/Paper-Latest-blue" alt="Latest Paper"></a>
   <a href="https://arxiv.org/pdf/2608.25559">
     <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="Paper">
   </a>
@@ -80,7 +81,7 @@ We develop a video deep research data construction pipeline with two main stages
 1. **QA generation:** discover retrieval-relevant entities and events from diverse videos, acquire detailed information through grounding and external retrieval, and construct questions that require both video evidence and external knowledge.
 2. **Trajectory generation:** organize the evidence-acquisition process into executable, task-specific tool-use trajectories and refine invalid dependencies, parameters, and search results.
 
-The pipeline further applies **model-conditioned tool necessity filtering**. Given the information available before a tool call, the target model is tested on whether it can obtain the expected result directly. Redundant tools or tool chains are removed, producing trajectories tailored to the target model's own capabilities.
+The pipeline further applies **model-conditioned tool necessity filtering** using **Qwen3.5-9B**, the base model that initializes AdaVDR-9B. Given the information available before a tool call, the target model is tested on whether it can obtain the expected result directly. Redundant tools or tool chains are removed, producing trajectories tailored to the target model's own capabilities.
 
 <div align="center">
   <img src="assets/data_collection.png" alt="AdaVDR data construction pipeline" width="95%">
@@ -112,25 +113,42 @@ VDR-EE covers single- and multi-entity questions as well as short-, medium-, and
 
 ## Training
 
-AdaVDR is trained in two stages:
+AdaVDR-9B is initialized from **Qwen3.5-9B** and trained in two stages:
 
-- **Cold-start supervised fine-tuning (SFT)** on the constructed tool-use trajectories.
-- **Reinforcement learning (RL)** with a redundancy-aware reward that discourages unnecessary grounding, retrieval, and reflection while preserving answer correctness.
+- **SFT** on 2.9K verified trajectories initializes adaptive tool use and reflection.
+- **NASA-GRPO** combines segment-guided evidence credit, model-conditioned necessity weighting, and tool-type reward normalization. Necessity tests use the current policy snapshot, refreshed at each RL iteration.
+
+<div align="center">
+  <img src="assets/nasa_grpo.png" alt="NASA-GRPO training framework" width="100%">
+</div>
 
 # Results
 
-We evaluate AdaVDR under the agentic setting on **VDR-EE** and **VideoDR**, using GPT-5.4 as the semantic answer judge. AdaVDR consistently improves over its corresponding base models on both benchmarks.
+We evaluate AdaVDR under the agentic setting on **VDR-EE** and **VideoDR**, using GPT-5.4 as the semantic answer judge. Improvements below are absolute percentage points over Qwen3.5-9B.
 
 | Model | VDR-EE Entity | VDR-EE Event | VDR-EE Overall | VideoDR Overall |
 | --- | ---: | ---: | ---: | ---: |
-| Qwen3-VL-8B-Instruct | 32.03 | 22.68 | 28.40 | 30.00 |
-| **AdaVDR-8B** | **41.18** | **34.02** | **38.40** | **51.00** |
-| **Improvement** | **+9.15** | **+11.34** | **+10.00** | **+21.00** |
 | Qwen3.5-9B | 42.48 | 36.08 | 40.00 | 37.00 |
-| **AdaVDR-9B** | **45.10** | **51.55** | **47.60** | **56.00** |
-| **Improvement** | **+2.61** | **+15.46** | **+7.60** | **+19.00** |
+| AdaVDR-9B-SFT | 47.06 | 49.48 | 48.00 | 52.00 |
+| SFT improvement | +4.58 | +13.40 | +8.00 | +15.00 |
+| **AdaVDR-9B** | **50.33** | **62.89** | **55.20** | **66.00** |
+| **Final improvement** | **+7.85** | **+26.81** | **+15.20** | **+29.00** |
 
-AdaVDR-9B achieves the best overall VDR-EE result among the evaluated open-source models. The largest gains appear on event-centric questions: AdaVDR-8B improves long-event accuracy by **21.43 points**, while AdaVDR-9B improves medium-event accuracy by **26.47 points**. On VideoDR, AdaVDR-8B and AdaVDR-9B outperform their base models by **21.00** and **19.00 points**, respectively, demonstrating that the learned adaptive behavior transfers beyond the training benchmark.
+NASA-GRPO adds **14.00 points on VideoDR** and **7.20 points on VDR-EE** over the SFT model. The complete main-results figure includes baseline comparisons and question-type breakdowns.
+
+<div align="center">
+  <img src="assets/main_results.png" alt="Updated main benchmark results, including AdaVDR-9B-SFT and AdaVDR-9B" width="100%">
+</div>
+
+## Training Curves
+
+The three panels compare **GRPO**, the variant **without necessity weighting**, and **NASA-GRPO**. NASA-GRPO maintains a higher smoothed rollout reward toward the end of the displayed training window. The curves complement the held-out accuracy results above.
+
+<div align="center">
+  <img src="assets/training_curves.png" alt="GRPO, no-necessity-weight, and NASA-GRPO training curves" width="100%">
+</div>
+
+Pale and dark lines show raw and smoothed rewards. The curve without necessity weighting is approximately digitized from the training-dashboard screenshot.
 
 ## Qualitative Cases
 
