@@ -60,9 +60,15 @@ We propose **AdaVDR**, an agent that adaptively selects tools and revises unreli
 - **Data Construction:** We construct task-specific evidence-acquisition trajectories and apply model-conditioned tool necessity filtering to remove calls the base model can bypass. SFT on 2.9K verified trajectories initializes adaptive tool use and reflection.
 - **RL Training — NASA-GRPO:** Our algorithm combines segment-guided evidence rewards, model-conditioned necessity weighting, and tool-type reward normalization to reward useful, necessary evidence acquisition. Beyond SFT, NASA-GRPO improves VideoDR accuracy from **52.00% to 66.00% (+14.00 percentage points)** and VDR-EE accuracy from **48.00% to 55.20% (+7.20 percentage points)**.
 
+## Training Curves
+
+The three panels compare **GRPO**, the variant **without necessity weighting**, and **NASA-GRPO**. NASA-GRPO maintains a higher smoothed rollout reward toward the end of the displayed training window. The curves complement the held-out accuracy results below.
+
 <div align="center">
-  <img src="assets/overview.png" alt="AdaVDR overview" width="90%">
+  <img src="assets/training_curves.png" alt="GRPO, no-necessity-weight, and NASA-GRPO training curves" width="100%">
 </div>
+
+Pale and dark lines show raw and smoothed rewards. The curve without necessity weighting is approximately digitized from the training-dashboard screenshot.
 
 # AdaVDR
 
@@ -71,6 +77,10 @@ We propose **AdaVDR**, an agent that adaptively selects tools and revises unreli
 Rather than enforcing a fixed sequence of temporal grounding, timestamp grounding, spatial grounding, image search, Web search, and page visits, AdaVDR constructs task-specific and capability-specific reasoning trajectories. For example, it can skip temporal grounding when the relevant frame is directly identifiable, skip image search when an entity is already recognized, or skip Web search when the required knowledge is available internally.
 
 When newly acquired evidence is irrelevant, inconsistent, or insufficient, AdaVDR identifies whether the failure originates from grounding or retrieval. It then selectively retries the corresponding step instead of restarting or reflecting after every interaction.
+
+<div align="center">
+  <img src="assets/overview.png" alt="AdaVDR overview" width="90%">
+</div>
 
 ## Data Construction
 
@@ -108,21 +118,19 @@ VDR-EE covers single- and multi-entity questions as well as short-, medium-, and
 AdaVDR-9B is initialized from **Qwen3.5-9B** and trained in two stages:
 
 - **SFT** on 2.9K verified trajectories initializes adaptive tool use and reflection.
-- **NASA-GRPO** combines segment-guided evidence credit, model-conditioned necessity weighting, and tool-type reward normalization. Necessity tests use the current policy snapshot, refreshed at each RL iteration.
+- **RL Training — NASA-GRPO** further refines the SFT policy with outcome feedback and necessity-aware process credit.
+
+NASA-GRPO consists of the following components:
+
+- **Outcome reward:** Evaluates final-answer correctness and penalizes invalid rollouts or those reaching the turn limit.
+- **Segment-guided evidence reward:** Credits correct target entities and external facts needed to answer the question. Previously obtained clues are not credited again.
+- **Model-conditioned necessity weighting:** Tests whether the current policy can recover the same information without a tool and reduces credit for bypassable calls. The policy snapshot is refreshed at each RL iteration.
+- **Tool-type reward normalization:** Normalizes process rewards within each tool type to balance tools with different positive-reward rates, then scales the process signal to match the outcome advantage.
+- **Tool-level credit assignment:** Applies outcome feedback to all generated tokens and local process credit only to tokens of the credited tool action.
 
 <div align="center">
   <img src="assets/nasa_grpo.png" alt="NASA-GRPO training framework" width="100%">
 </div>
-
-## Training Curves
-
-The three panels compare **GRPO**, the variant **without necessity weighting**, and **NASA-GRPO**. NASA-GRPO maintains a higher smoothed rollout reward toward the end of the displayed training window. The curves complement the held-out accuracy results below.
-
-<div align="center">
-  <img src="assets/training_curves.png" alt="GRPO, no-necessity-weight, and NASA-GRPO training curves" width="100%">
-</div>
-
-Pale and dark lines show raw and smoothed rewards. The curve without necessity weighting is approximately digitized from the training-dashboard screenshot.
 
 # Results
 
