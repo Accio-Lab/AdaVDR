@@ -62,6 +62,10 @@ We propose **AdaVDR**, an adaptive video deep research agent with two complement
 
 Together, these mechanisms reduce redundant tool interactions and limit error propagation during multi-turn video research.
 
+**NASA-GRPO is our reinforcement learning algorithm for strengthening adaptive tool use beyond SFT.** It combines segment-guided evidence rewards, model-conditioned necessity weighting, and tool-type reward normalization to credit useful evidence acquisition while reducing credit for tool calls the policy can bypass. Adaptive training trajectories initialize the agent; NASA-GRPO further improves its decisions about which tools to use as the policy’s capabilities evolve.
+
+**NASA-GRPO delivers substantial gains over the SFT model:** VideoDR accuracy rises from **52.00% to 66.00% (+14.00 percentage points)**, and VDR-EE accuracy rises from **48.00% to 55.20% (+7.20 percentage points)**. The final model improves over the agentic Qwen3.5-9B base by **29.00** and **15.20 percentage points**, respectively.
+
 <div align="center">
   <img src="assets/overview.png" alt="AdaVDR overview" width="90%">
 </div>
