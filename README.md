@@ -91,13 +91,7 @@ The pipeline further applies **model-conditioned tool necessity filtering** usin
 
 We introduce **VDR-EE**, a manually verified benchmark for entity-centric and event-centric video deep research. It contains **250 questions** across seven domains:
 
-- Culture
-- Entertainment
-- Industry
-- News
-- Scene understanding
-- Science
-- Sports
+Culture, Entertainment, Industry, News, Scene understanding, Science, and Sports.
 
 Every question requires both video evidence and external knowledge. The benchmark contains **153 entity-centric questions** and **97 event-centric questions**. Entity questions are grouped by the number of target entities, while event questions are grouped by target-event duration, enabling fine-grained evaluation across different video research patterns.
 
@@ -122,6 +116,16 @@ AdaVDR-9B is initialized from **Qwen3.5-9B** and trained in two stages:
   <img src="assets/nasa_grpo.png" alt="NASA-GRPO training framework" width="100%">
 </div>
 
+## Training Curves
+
+The three panels compare **GRPO**, the variant **without necessity weighting**, and **NASA-GRPO**. NASA-GRPO maintains a higher smoothed rollout reward toward the end of the displayed training window. The curves complement the held-out accuracy results below.
+
+<div align="center">
+  <img src="assets/training_curves.png" alt="GRPO, no-necessity-weight, and NASA-GRPO training curves" width="100%">
+</div>
+
+Pale and dark lines show raw and smoothed rewards. The curve without necessity weighting is approximately digitized from the training-dashboard screenshot.
+
 # Results
 
 We evaluate AdaVDR under the agentic setting on **VDR-EE** and **VideoDR**, using GPT-5.4 as the semantic answer judge. Improvements below are absolute percentage points over Qwen3.5-9B.
@@ -139,16 +143,6 @@ NASA-GRPO adds **14.00 points on VideoDR** and **7.20 points on VDR-EE** over th
 <div align="center">
   <img src="assets/main_results.png" alt="Updated main benchmark results, including AdaVDR-9B-SFT and AdaVDR-9B" width="100%">
 </div>
-
-## Training Curves
-
-The three panels compare **GRPO**, the variant **without necessity weighting**, and **NASA-GRPO**. NASA-GRPO maintains a higher smoothed rollout reward toward the end of the displayed training window. The curves complement the held-out accuracy results above.
-
-<div align="center">
-  <img src="assets/training_curves.png" alt="GRPO, no-necessity-weight, and NASA-GRPO training curves" width="100%">
-</div>
-
-Pale and dark lines show raw and smoothed rewards. The curve without necessity weighting is approximately digitized from the training-dashboard screenshot.
 
 ## Qualitative Cases
 
