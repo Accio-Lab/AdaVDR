@@ -40,6 +40,7 @@
 
 # 🔥 News
 
+- [2026/10] We updated our RL algorithm with **NASA-GRPO**, a necessity-aware segment-guided credit assignment method, improving accuracy over the SFT model by **14.0 percentage points on VideoDR** and **7.2 percentage points on VDR-EE**.
 - [2026/08] We released the AdaVDR paper on arXiv.
 
 # TODO List
