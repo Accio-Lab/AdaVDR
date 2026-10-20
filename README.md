@@ -30,7 +30,7 @@
   <a href="https://arxiv.org/pdf/2608.25559">
     <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b.svg" alt="Paper">
   </a>
-  <a href="https://huggingface.co/Accio-Lab/VDR-EE-Benchmark">
+  <a href="https://huggingface.co/datasets/Accio-Lab/VDR-EE-Benchmark">
     <img src="https://img.shields.io/badge/%F0%9F%A4%97-Data-yellow" alt="Hugging Face Data">
   </a>
   <a href="https://github.com/Accio-Lab/AdaVDR">
@@ -40,7 +40,7 @@
 
 # 🔥 News
 
-- [2026/10] We released the **[VDR-EE benchmark](https://huggingface.co/Accio-Lab/VDR-EE-Benchmark)** and evaluation code.
+- [2026/10] We released the **[VDR-EE benchmark](https://huggingface.co/datasets/Accio-Lab/VDR-EE-Benchmark)** and evaluation code.
 - [2026/10] We updated our paper, with the main update being the RL algorithm **NASA-GRPO**, a necessity-aware segment-guided credit assignment method, improving accuracy over the SFT model by **14.0 percentage points on VideoDR** and **7.2 percentage points on VDR-EE**.
 - [2026/08] We released the AdaVDR paper on arXiv.
 
@@ -99,7 +99,7 @@ The pipeline further applies **model-conditioned tool necessity filtering** usin
 
 ## VDR-EE Benchmark
 
-The benchmark is available on [Hugging Face](https://huggingface.co/Accio-Lab/VDR-EE-Benchmark).
+The benchmark is available on [Hugging Face](https://huggingface.co/datasets/Accio-Lab/VDR-EE-Benchmark).
 
 We introduce **VDR-EE**, a manually verified benchmark for entity-centric and event-centric video deep research. It contains **250 questions** across seven domains:
 
