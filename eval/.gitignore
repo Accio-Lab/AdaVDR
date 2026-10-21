@@ -1,0 +1,12 @@
+.env
+.env.local
+.local/
+services.yaml
+services.local.yaml
+*.private.yaml
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+.cache/
+results/
+tool_media/

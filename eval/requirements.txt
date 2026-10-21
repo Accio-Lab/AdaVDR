@@ -1,0 +1,7 @@
+# Evaluation client. Install vLLM separately in the serving environment.
+openai>=1.0
+opencv-python-headless>=4.8
+pyarrow>=14
+av>=12
+oss2>=2.18
+PyYAML>=6.0

@@ -1,0 +1,35 @@
+# Copy outside the public code directory and fill with your own service settings.
+# Existing environment variables take priority over these values.
+version: 1
+inference:
+  base_url: ""
+  model: ""
+  api_key: ""
+ydc:
+  endpoint: ""
+  api_key: ""
+serper:
+  search_endpoint: ""
+  image_endpoint: ""
+  scrape_endpoint: ""
+  api_key: ""
+# Optional settings for other integrations; not used by the current search route.
+serpapi:
+  endpoint: ""
+  api_key: ""
+oss:
+  endpoint: ""
+  bucket: ""
+  public_base_url: ""
+  access_key_id: ""
+  access_key_secret: ""
+  prefix: "vdr-eval-crops"
+  object_acl: ""
+summary:
+  base_url: ""
+  model: ""
+  api_key: ""
+judge:
+  base_url: ""
+  model: ""
+  api_key: ""
